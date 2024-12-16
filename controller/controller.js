@@ -68,8 +68,9 @@ const handleAnalysisUser=async (req,res) => {
       return res.status(404).json({error:"User Not Found !"})
     }
     const clicks=user.clicks.length;
-    const ips=user.clicks.map((click)=>(click.ip));
-    res.json({clicks:clicks,ips:ips});
+    const records=user.clicks.map((click)=>({ip:click.ip,city:click.city,country:click.country}));
+
+    res.json({clicks:clicks,records:records});
 }
 
 export {
