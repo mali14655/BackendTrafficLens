@@ -21,12 +21,20 @@ const userSchema=mongoose.Schema({
             timeStamp:{
                 type:Date,
             },
-            ip:String
+            ip:String,
+            userAgent:{
+                type:String
+            },
+            city:{
+                type:String
+            },
+            country:{
+                type:String
+            }
         }
     ]
     
 })
-
 const UserModel=mongoose.model("usermodel",userSchema);
 
 export default UserModel;
