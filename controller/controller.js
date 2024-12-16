@@ -34,9 +34,10 @@ const handleCreateUser=async(req,res)=>{
 const handleVisitUser=async(req,res)=>{
     const {id}=req.params;
     console.log(id);
+    const ip=req.headers['x-forwarded-for'] || req.connection.remoteAddress;
     const user=await UserModel.findOneAndUpdate(
         {genId:id},
-        {$push:{clicks:{timeStamp:Date.now(),ip:`${req.ip}`}}},
+        {$push:{clicks:{timeStamp:Date.now(),ip:`${ip}`}}},
         {new:true});
     if (!user) {
         // If user is not found, return a 404 error
